@@ -1,9 +1,10 @@
-import { Component, lazy, Suspense, useLayoutEffect, useMemo, useState } from 'react'
+import { Component, lazy, Suspense, useCallback, useEffect, useLayoutEffect, useMemo, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { SECTIONS } from '../data/config'
 import { getQuality, useReducedMotion, useWebGL } from '../hooks/hooks'
 import { scrollState } from '../three/scrollState'
+import Preloader from '../components/Preloader'
 import Nav from '../components/Nav'
 import Cursor from '../components/Cursor'
 import Hero from '../scenes/Hero'
@@ -26,6 +27,11 @@ export default function App() {
   const webgl = useWebGL()
   const quality = useMemo(getQuality, [])
   const [active, setActive] = useState(0)
+  const [ready, setReady] = useState(false)
+
+  // Preloader finished: restart the emblem build-in so it plays after the wipe, then refresh layout.
+  const done = useCallback(() => { scrollState.intro = 0; setReady(true) }, [])
+  useEffect(() => { if (ready) ScrollTrigger.refresh() }, [ready])
 
   // One global trigger converts scroll position into a continuous "section position" (0..6).
   // Pinned sections are measured through their pin-spacer so progress keeps moving while pinned.
@@ -50,6 +56,7 @@ export default function App() {
 
   return (
     <div className={webgl ? '' : 'no-webgl'}>
+      {!ready && <Preloader reduced={reduced} onDone={done} />}
       <Cursor />
       <Nav active={active} />
       {webgl && (
@@ -58,7 +65,7 @@ export default function App() {
         </Suspense></Boundary>
       )}
       <main>
-        <Hero reduced={reduced} />
+        <Hero reduced={reduced} ready={ready} />
         <Spike reduced={reduced} />
         <MapBreach reduced={reduced} />
         <Agents />

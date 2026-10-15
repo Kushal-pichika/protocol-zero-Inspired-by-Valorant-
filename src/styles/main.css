@@ -82,3 +82,28 @@ section{position:relative;min-height:100vh;padding:var(--pad)}
  .site-info{right:var(--pad);bottom:64px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+
+.pre{position:fixed;inset:0;z-index:200;background:var(--obsidian);display:grid;place-content:center;justify-items:center;gap:22px;overflow:hidden;clip-path:polygon(0 0,100% 0,100% 100%,0 100%)}
+.pre-grid{position:absolute;inset:0;z-index:-1;background:linear-gradient(rgba(146,151,163,.07) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(146,151,163,.07) 1px,transparent 1px) 0 0/48px 48px;-webkit-mask:radial-gradient(circle at center,#000 20%,transparent 70%);mask:radial-gradient(circle at center,#000 20%,transparent 70%)}
+.pre-b{position:absolute;width:44px;height:44px;border:2px solid var(--red)}
+.pre-b.tl{top:28px;left:28px;border-right:0;border-bottom:0}
+.pre-b.tr{top:28px;right:28px;border-left:0;border-bottom:0}
+.pre-b.bl{bottom:28px;left:28px;border-right:0;border-top:0}
+.pre-b.br{bottom:28px;right:28px;border-left:0;border-top:0}
+.pre-label{position:absolute;top:44px;font-size:.7rem;letter-spacing:.25em;color:var(--grey)}
+.pre-l1{left:92px}.pre-l2{right:92px}
+.pre-scan{position:absolute;left:0;right:0;top:0;height:2px;background:var(--red);box-shadow:0 0 24px 4px rgba(255,70,85,.6);opacity:0}
+.pre-logo{width:clamp(72px,10vw,120px);filter:drop-shadow(0 0 14px rgba(255,70,85,.55))}
+.pre-hex{fill:none;stroke:var(--red);stroke-width:2.5;stroke-dasharray:1;stroke-dashoffset:0}
+.pre-core{fill:var(--red)}
+.pre-title{display:flex;flex-wrap:wrap;justify-content:center;font-size:clamp(48px,12vw,180px)}
+.pre-ch{display:inline-block;min-width:.1em}
+.pre-sub{color:var(--grey);letter-spacing:.4em;font-size:.8rem}
+.pre-meter{position:absolute;left:92px;bottom:44px;display:grid;gap:8px;min-width:140px;font-family:var(--display);font-weight:600;font-size:1.6rem;letter-spacing:.1em}
+.pre-track{height:2px;background:var(--slate)}
+.pre-fill{display:block;height:100%;background:var(--red);transform-origin:left}
+.pre-skip{position:absolute;right:92px;bottom:44px;color:var(--grey);font-family:var(--display);letter-spacing:.12em;text-transform:uppercase}
+.pre-slash{position:fixed;top:0;bottom:0;left:0;width:34vw;background:var(--red);clip-path:polygon(18% 0,100% 0,82% 100%,0 100%);z-index:201;pointer-events:none;transform:translateX(-45vw)}
+.cursor{z-index:300}
+@media (max-width:700px){.pre-label{display:none}.pre-meter{left:28px;bottom:32px}.pre-skip{right:28px;bottom:32px}.pre-b{width:28px;height:28px}}
