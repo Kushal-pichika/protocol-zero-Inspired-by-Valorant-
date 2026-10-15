@@ -1,6 +1,6 @@
 import { SECTIONS } from '../data/config'
 import { goTo } from '../hooks/hooks'
-import logo from '../assets/logo.svg'
+import logo from '../assets/logo/logo.svg'
 export default function Nav({ active }) {
   return (<>
     <header className="nav">
